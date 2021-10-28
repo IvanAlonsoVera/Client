@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>validar</title>
+	<script type="text/javascript" src="js/formulario.js"></script>
+</head>
+<body>
+	<h1>validar formulario</h1>
+
+	<form action="php/formulario.php" method="get" onsubmit="return comprobar()">
+		<label for="nombre">Nombre: </label>
+		<input type="text" name="nombre" id="nombre"><br>
+		<label for="apellidos">Apellidos :</label>
+		<input type="text" name="apellidos" id="apellido"><br>
+		<label for="edad">Edad :</label>
+		<input type="text" name="edad" id="edad"><br>
+		<input type="submit" value="Enviar">
+	</form>
+</body>
+</html>
