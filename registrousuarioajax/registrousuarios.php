@@ -2,43 +2,36 @@
 	//los ficheros con las clases
 	require 'usuario.php';
 	require 'ListaUsuarios.php';
-	echo $_POST['usu'];
+	$persona= json_decode($_POST['usu']);
 
-/*
 	//comprueba que recibe usuario y pass
-	if (isset($_GET['usuario'], $_GET['contra'])) {
-		registrarUsuario();
+	if ($persona->usuario !="" && $persona->contrasena !="") {
+		registrarUsuario($persona);
 	}else{
-		echo "Falta usuario o la contraseña";
+		echo 0;
 	}
 
-	function registrarUsuario(){
+	function registrarUsuario($p){
 
 		//datos fichero
 		$path = "datos/";
 		$fichUsu = "usuarios.txt";
 
-		//datos de entrada
-		$nom = $_GET['nombre'] ?? '';
-		$ape = $_GET['apellidos'] ?? '';
-		$cor = $_GET['correo'] ?? '';
-		$usu = $_GET['usuario'];
-		$pass = $_GET['contra'];
-
 		//se crea el ojeto reg y lista usu
-		$reg = new Usuario($nom, $ape, $cor, $usu, $pass);
+		$reg = new Usuario($p->nombre, $p->apellido, $p->correo, $p->usuario, $p->contrasena);
 		$listaUsu= new ListaUsuarios($path,$fichUsu);
 
 		if($listaUsu->noExisteUsuario($reg->getUsu())){
 			$fu=fopen($path.$fichUsu,"a");
 			fputs($fu,$reg->creeLineaFichero()."\n");
 			fclose($fu);
+			echo json_encode(true);
 		}else{
-			echo "Error en el registro";
+			echo json_encode(false);
 		}
 		
 
 		$reg->creeLineaFichero();
 
-	}*/
+	}
 
